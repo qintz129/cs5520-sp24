@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, StyleSheet, Modal, View} from 'react-native'; 
-import Start from './Screens/Start';  
-import Game from './Screens/Game'; 
-import Final from './Screens/Final'; 
+import Start from './screens/Start';  
+import Game from './screens/Game'; 
+import Final from './screens/Final'; 
 import colors from './components/colors';
 import React, { useState } from 'react';  
 import { LinearGradient } from 'expo-linear-gradient';
