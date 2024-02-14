@@ -1,7 +1,9 @@
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';  
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
 import Activities from '../screens/Activities';   
-import colors from '../colors';  
+import colors from '../colors';   
+import { FontAwesome6 } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();  
 
@@ -25,15 +27,14 @@ export default function TabActivities({ navigation}) {
           );
         },
         tabBarIcon: ({ focused, color, size }) => {
-          let icon = '';
           if (route.name === 'All Activities') {
-            icon = '$';
+            return <FontAwesome6 name="dollar-sign" size={20} color={color} />;
           } else if (route.name === 'Special Activities') {
-            icon = '!';
+            return <AntDesign name="exclamation" size={25} color={color} />
           }
-          return <Text style={[styles.icon, { color: color, fontSize: size}]}>{icon}</Text>;
         }, 
-        tabBarActiveTintColor: colors.activeActivity, 
+        tabBarActiveTintColor: colors.activeActivity,  
+        tabBarInactiveTintColor: colors.title,
       })}
        >
         <Tab.Screen name="All Activities">
