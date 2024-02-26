@@ -1,18 +1,22 @@
-import { StyleSheet, Text, View,  FlatList} from 'react-native'
+import { StyleSheet, Text, View} from 'react-native'
 import React from 'react' 
-import colors from '../colors'
+import colors from '../colors' 
+import CustomButton from './CustomButton';
 
 // ActivitiesList component as the element of the FlatList in All Activities and Special Activities screen
-export default function ActivitiesList({ type, duration, date, isSpecial}) { 
+export default function ActivitiesList({item, pressFunction}) {  
+  const handlePress = () => { 
+    pressFunction(item)
+  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.type}>{type}</Text>
+    <CustomButton onPress={handlePress} customStyle={styles.container}>
+      <Text style={styles.type}>{item.activity}</Text>
       <View style={styles.details}>  
-        {isSpecial && <Text style={styles.icon}>⚠️</Text>}
-        <Text style={[styles.detailText, styles.dateText]}>{date}</Text>
-        <Text style={[styles.detailText, styles.minText]}>{duration} min</Text>
+        {item.important && <Text style={styles.icon}>⚠️</Text>}
+        <Text style={[styles.detailText, styles.dateText]}>{item.formattedDate}</Text>
+        <Text style={[styles.detailText, styles.durationText]}>{item.duration} min</Text>
       </View>
-    </View>
+    </CustomButton>
   );
 }
 
@@ -26,7 +30,6 @@ const styles = StyleSheet.create({
       backgroundColor: colors.normal, 
       marginVertical: 10, 
       borderRadius: 10, 
-      borderRadius: 10,
       shadowOffset: { width: 1, height: 1 },
       shadowColor: 'black',
       shadowOpacity: 0.3,
@@ -37,7 +40,8 @@ const styles = StyleSheet.create({
       fontWeight: 'bold', 
       width: '30%', 
       color: colors.title, 
-      paddingHorizontal: 10, 
+      paddingHorizontal: 10,  
+      alignSelf: 'center',
     },
     details: {
       flexDirection: 'row',  
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
         color:colors.normal, 
         fontWeight: 'bold', 
     }, 
-    minText: {
+    durationText: {
       paddingHorizontal: 10,
     },  
     dateText: { 

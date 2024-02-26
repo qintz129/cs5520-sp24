@@ -57,18 +57,28 @@ export default function Start({ navigation}) {
         setEmail(''); 
         setPhoneError(false); 
         setEmailError(false);   
-    };
+    }; 
+    const resetTitle = 'Reset';
+    const startTitle = 'Start';
 
-  return (
+    return (
     <View style={styles.container}>
     <CustomInput title="Email Address" onChangeText={handleEmailChange} reminder="email address" inValidError={emailError} value={email}/> 
     <CustomInput title="Phone Number" onChangeText={handlePhoneChange} reminder="phone number" inValidError={phoneError} keyboardType="numeric" value={phone}/>   
     <View style={styles.buttonView}> 
-        <CustomButton title="Reset" onPress={handleReset}/>  
-        <CustomButton title="Start" onPress={handleStart} disabled={!isInput}/> 
+        <CustomButton onPress={handleReset}> 
+            <Text style={[styles.text, styles.resetText]}>
+                {resetTitle}
+            </Text>
+        </CustomButton>  
+        <CustomButton onPress={handleStart} disabled={!isInput}> 
+            <Text style={[styles.text, !isInput ? styles.disabledText : styles.normalText]}>
+                {startTitle}
+            </Text>
+        </CustomButton>
     </View>
     </View>
-  )
+    )
 }
 
 const styles = StyleSheet.create({ 
@@ -80,11 +90,22 @@ const styles = StyleSheet.create({
         width: "100%",   
         backgroundColor: colors.background,
       }, 
-      buttonView: { 
-        flexDirection: 'row', 
-        justifyContent: 'space-evenly',  
-        width: '100%',  
-        alignSelf: 'center',
-      } 
-      
+    buttonView: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-evenly',  
+    width: '100%',  
+    alignSelf: 'center',
+     }, 
+    text: {
+    fontSize: 18,
+     },
+    resetText: {
+    color: colors.resetButton,
+     },
+    normalText: {
+    color: colors.normal,
+     }, 
+    disabledText: {
+    color: colors.disabledButton,
+     }   
 })
