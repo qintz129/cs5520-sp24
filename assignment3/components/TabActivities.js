@@ -1,9 +1,10 @@
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';  
+import {View, StyleSheet } from 'react-native';  
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'; 
 import Activities from '../screens/Activities';   
 import colors from '../colors';   
 import { FontAwesome6 } from '@expo/vector-icons'; 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons'; 
+import CustomButton from './CustomButton';
 
 const Tab = createBottomTabNavigator();  
 
@@ -20,11 +21,13 @@ export default function TabActivities({ navigation}) {
         headerTitleAlign: 'center',
         headerTintColor: colors.white, 
         headerRight: () => {
-          return (
-            <TouchableOpacity onPress={handlePress}> 
-              <Text style={styles.button}>Add</Text> 
-            </TouchableOpacity>
-          );
+          return (  
+            <View style={{ marginRight: 30 }}>
+              <CustomButton onPress={handlePress}> 
+                <FontAwesome6 name="add" size={20} color={colors.white}/>
+              </CustomButton> 
+            </View>
+          ); 
         },
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'All Activities') {
@@ -37,11 +40,11 @@ export default function TabActivities({ navigation}) {
         tabBarInactiveTintColor: colors.title,
       })}
        >
-        <Tab.Screen name="All Activities">
-          {() => <Activities/>}
-        </Tab.Screen>
-        <Tab.Screen name="Special Activities">
-          {() => <Activities special={true} />}
+      <Tab.Screen name="All Activities">
+        {props => <Activities {...props} />}
+      </Tab.Screen>
+      <Tab.Screen name="Special Activities">
+        {props => <Activities special={true} {...props} />}
         </Tab.Screen>
       </Tab.Navigator>
     );
@@ -52,10 +55,6 @@ button: {
     color: colors.activeActivity, 
     fontSize: 18, 
     marginRight: 10, 
-}, 
-icon: { 
-    fontSize: 20, 
-    color: colors.title,
 }, 
 label: { 
     fontSize: 12, 

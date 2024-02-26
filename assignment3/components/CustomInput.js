@@ -15,7 +15,7 @@ export default function CustomInput({title, onChangeText, reminder='', inValidEr
                 onChangeText={onChangeText}  
                 keyboardType={keyboardType}  
                 value = {value} 
-                onFocus = {handleFocus}
+                onFocus = {handleFocus} 
             /> 
             {inValidError&&<Text style={styles.reminder}>{`Please enter a valid ${reminder}.`}</Text>}
         </View>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         color: colors.text, 
         backgroundColor: colors.input,
         borderRadius: 10, 
-        padding: 10,
+        paddingHorizontal: 10,
     }, 
     reminder:{ 
         color: colors.remind, 

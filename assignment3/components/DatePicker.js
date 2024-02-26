@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import CustomInput from '../components/CustomInput' 
 
 // DatePicker component to achieve the date picker for AddActivity screen 
-export default function DatePicker({date, formattedDate, onChange}) {
+export default function DatePicker({date, formattedDate, onChange, placeholder}) {
     const [show, setShow] = useState(false); 
   
     // CalendarDateChange function to handle the date change event 
@@ -29,7 +29,7 @@ export default function DatePicker({date, formattedDate, onChange}) {
     
     return (
     <SafeAreaView style={styles.input}>  
-    <CustomInput title="Date *" value={formattedDate} onFocus={showDatepicker}/>
+    <CustomInput title="Date *" value={formattedDate} onFocus={showDatepicker} placeholder={placeholder}/>
     {show && (
         <DateTimePicker
             value={date}

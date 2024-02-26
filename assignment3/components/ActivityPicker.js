@@ -4,7 +4,7 @@ import { SelectList } from 'react-native-dropdown-select-list'
 import colors from '../colors'
 
 // ActivityPicker component to achieve the activity selection in AddActivity screen
-export default function ActivityPicker({activity, onChange}) { 
+export default function ActivityPicker({activity, onChange, placeholder}) { 
     const data = [ 
       {key: 'Walking', value: 'Walking'},
       {key: 'Running', value: 'Running'}, 
@@ -22,8 +22,8 @@ export default function ActivityPicker({activity, onChange}) {
         setSelected={(activity) => onChange(activity)} 
         data={data} 
         save="value" 
-        placeholder	= "Select An Activity" 
-        search = {false}   
+        placeholder={placeholder} 
+        search={false}   
         boxStyles={styles.box} 
         dropdownTextStyles={styles.text} 
         dropdownStyles={styles.dropDown}

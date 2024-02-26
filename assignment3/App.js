@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer} from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"; 
 import Start from './screens/Start';   
-import AddActivity from './screens/AddActivity';
-import { ActivitiesProvider } from './ActivitiesContext';  
+import AddActivity from './screens/AddActivity'; 
+import EditActivity from './screens/EditActivity';
 import colors from './colors';  
 import TabActivities from './components/TabActivities'; 
 
@@ -13,7 +13,6 @@ const Stack = createNativeStackNavigator();
 // App component to achieve the navigation for all screens
 export default function App() { 
   return (  
-      <ActivitiesProvider>
         <NavigationContainer> 
           <Stack.Navigator 
                 screenOptions={{ 
@@ -30,10 +29,11 @@ export default function App() {
                           options={{ headerShown: false }}
                           /> 
             <Stack.Screen name="Add An Activity" 
-             component={AddActivity}/>
+             component={AddActivity}/> 
+            <Stack.Screen name="Edit" 
+             component={EditActivity}/>
           </Stack.Navigator>
         </NavigationContainer> 
-      </ActivitiesProvider> 
   );
 }
 
